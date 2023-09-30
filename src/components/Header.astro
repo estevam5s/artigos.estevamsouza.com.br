@@ -20,15 +20,14 @@ allPosts.map(post => {
       <a href="/" class="group">
         <h2 class="font-semibold tracking-tighter p-2 font-mplus text-lg">
           <FootprintIcon />
-          Takuya Matsuyama
+          Estevam Souza
         </h2>
       </a>
       <div class="items-center gap-6 hidden md:flex">
-        <HeaderLink href={HOMEPAGE_URL}>About</HeaderLink>
-        <HeaderLink
-          href="https://github.com/craftzdog/craftzdog-uses"
-          target="_blank"><IoLogoGithub />Source</HeaderLink
-        >
+        <HeaderLink href={HOMEPAGE_URL}>Sobre</HeaderLink>
+        <HeaderLink href="https://github.com/estevam5s" target="_blank">
+          <IoLogoGithub />Github
+        </HeaderLink>
       </div>
       <div class="flex-1"></div>
       <ThemeToggle client:visible />
