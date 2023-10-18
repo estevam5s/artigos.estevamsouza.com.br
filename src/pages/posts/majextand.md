@@ -1,36 +1,82 @@
 ---
-description: Laptop stand
+description: Backend
 public: true
 layout: ../../layouts/BlogPost.astro
-title: Majextand
+title: Nestjs
 createdAt: 1679637675890
 updatedAt: 1679639345601
 tags:
-  - Computing
-heroImage: /posts/majextand_thumbnail.jpg
-slug: majextand
+  - Framework
+heroImage: /posts/nestjs.png
+slug: Nestjs
 ---
 
 
-I had been using [a laptop stand by an unknown manufacturer](/posts/aiyujiwu-laptop-stand) for my M1 MacBook Pro, but it wasn't very comfortable as it didn't elevate the laptop to a sufficient height. When I upgraded to a new M2 MacBook Pro, I decided to try a different laptop stand called [Majextand](https://amzn.to/40d54nI), which has received many positive reviews on YouTube in Japan.
+# Introdução ao Framework Nest.js
 
-![majexstand_01](/posts/majextand_majexstand-01.jpg)
+O [Nest.js](https://nestjs.com/)  é um framework de desenvolvimento para aplicativos Node.js, que combina eficiência e escalabilidade com facilidade de uso. Ele fornece uma arquitetura sólida para criar aplicativos do lado do servidor e é amplamente usado para criar APIs RESTful e aplicativos da web em geral. Neste blog, vamos explorar os conceitos fundamentais do Nest.js e como começar a usá-lo.
+## Por que usar o Nest.js?
 
-Designed based on ergonomics, the Majextand not only protects the cervical spine during use but also promotes better heat dissipation for the laptop. Unlike conventional stands, which are often bulky and inconvenient for daily use, the Majextand is slim, lightweight, and user-friendly. It can raise the laptop between 7cm and 12cm, with 6 adjustable height settings to suit various situations, such as typing, watching videos, or aligning the laptop with an external display.
+O Nest.js é uma escolha popular para o desenvolvimento de aplicativos Node.js por várias razões: 
+1. **Arquitetura Modular:**  O Nest.js adota uma arquitetura modular que ajuda a organizar o código em módulos reutilizáveis. Isso torna o código mais limpo e fácil de manter. 
+2. **Suporte a TypeScript:**  O Nest.js é construído com TypeScript em mente, o que significa que você pode aproveitar os recursos de tipagem estática para evitar erros comuns durante o desenvolvimento. 
+3. **Injeção de Dependência:**  O framework possui um sistema de injeção de dependência que facilita a organização e o gerenciamento de dependências em seus aplicativos. 
+4. **Roteamento Automático:**  O Nest.js oferece um sistema de roteamento automático para definir rotas para seus controladores de maneira simples e eficiente. 
+5. **Testabilidade:**  O Nest.js promove a escrita de testes automatizados para seu código, facilitando a validação e a manutenção de suas funcionalidades. 
+6. **Ampla Comunidade e Documentação:**  Há uma comunidade ativa em torno do Nest.js e uma documentação abrangente que facilita a aprendizagem e o desenvolvimento.
+## Configuração do Ambiente
 
-![majexstand_02](/posts/majextand_majexstand-02.jpg)
+Antes de começar a usar o Nest.js, você deve garantir que tenha o Node.js instalado em seu sistema. Você também pode optar por usar o [Nest CLI](https://docs.nestjs.com/cli/overview)  para gerar projetos e componentes automaticamente.
 
-![majexstand_03](/posts/majextand_majexstand-03.jpg)
+Para criar um novo projeto Nest.js com o Nest CLI, você pode usar o seguinte comando:
 
-The Majextand is incredibly thin, measuring only 1.7mm—thinner than a 25-cent coin—making it barely noticeable when attached to the laptop. This ultra-slim design ensures that carrying your laptop with the Majextand attached won't be a burden.
+```bash
+npx @nestjs/cli new my-nest-project
+```
 
-![majexstand_04](/posts/majextand_majexstand-04.jpg)
 
-At first, I was concerned that the stand might be too high, but that hasn't been an issue. I typically use it at the 7cm setting for typing and other tasks, but sometimes switch to the 12cm height for a better viewing angle when watching videos or connecting to an external display.
 
-![majexstand_05](/posts/majextand_majexstand-05.jpg)
+Isso criará uma estrutura de projeto inicial para você começar.
+## Estrutura de Arquivos e Diretórios
 
-Overall, I'm pretty satisfied with the Majextand. Its ergonomic design, versatility, and slim profile make it an ideal laptop stand for daily use, and I  recommend it to anyone seeking a comfortable, stylish, and practical solution for their laptop.
+A estrutura de diretórios de um projeto Nest.js é altamente organizada e segue um padrão consistente. Alguns dos diretórios mais importantes em um projeto Nest.js incluem: 
+- `src`: Contém o código-fonte principal do seu aplicativo. 
+- `src/main.ts`: O ponto de entrada do aplicativo. 
+- `src/modules`: Onde os módulos do aplicativo são definidos. 
+- `src/controllers`: Onde você define os controladores que respondem às solicitações HTTP. 
+- `src/services`: Onde a lógica de negócios é implementada. 
+- `test`: Onde você coloca seus testes automatizados.
+## Criando um Módulo e um Controlador
 
-- [Amazon US](https://amzn.to/40d54nI)
-- [Amazon JP](https://amzn.to/40xl43G)
+Para começar a trabalhar com o Nest.js, você pode criar um novo módulo e um controlador. Isso é feito usando o Nest CLI da seguinte forma:
+
+```bash
+npx @nestjs/cli generate module cats
+npx @nestjs/cli generate controller cats
+```
+
+
+
+Isso criará um módulo chamado `CatsModule` e um controlador chamado `CatsController`.
+## Definindo Rotas
+
+Para definir rotas, você pode usar decoradores fornecidos pelo Nest.js. No controlador `CatsController`, você pode definir uma rota simples da seguinte maneira:
+
+```typescript
+import { Controller, Get } from '@nestjs/common';
+
+@Controller('cats')
+export class CatsController {
+  @Get()
+  findAll(): string {
+    return 'This action returns all cats';
+  }
+}
+```
+
+
+
+Neste exemplo, o controlador `CatsController` responde a requisições GET na rota `/cats`.
+## Conclusão
+
+O Nest.js é um framework Node.js poderoso e altamente flexível para desenvolvimento de aplicativos do lado do servidor. Com recursos como arquitetura modular, suporte a TypeScript e injeção de dependência, ele oferece uma base sólida para a criação de aplicativos robustos e escaláveis. À medida que você explora mais sobre o Nest.js, você poderá criar aplicativos complexos e altamente testáveis. Continue explorando a documentação oficial do Nest.js para obter mais informações e recursos.

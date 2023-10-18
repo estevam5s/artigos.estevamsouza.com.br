@@ -1,27 +1,107 @@
 ---
-description: Laptop computer
-slug: macbook-pro
+description: Criando uma API RESTful Profissional
+slug: Backend
 public: true
 layout: ../../layouts/BlogPost.astro
-title: MacBook Pro (M1 Max)
+title: Typescript
 createdAt: 1663205542000
 updatedAt: 1663138785310
 tags:
-  - Computing
-heroImage: /posts/macbook-pro_thumbnail.jpg
+  - Backend
+heroImage: /posts/Nest_TS_90e48e5541.png
 ---
 
 
-MacBook Pro (14-inch, 2021) is my main computer for app devs, designing, video editing, and everything else.
-It's so powerful and really a good foundation to create digital stuff. It will stay with you regardless of how far you wanna go, how crazy you want to experiment whatever. And bonus: It's portable!
+# Criação de uma API RESTful com TypeScript e Nest.js
 
-![macbook-pro-m1-max.jpg](/posts/macbook-pro_macbook-pro-m1-max-jpg.jpg)
+## Tópico 1: Configuração Inicial
+### 1.1 Instalação e Configuração
 
-So, I can enjoy coding wherever like at cafes, hotels, and even in nature :) Pretty awesome.
-It would have not been possible to film coding videos in nature like this, thanks to its high power efficiency.
+```bash
+npm install -g @nestjs/cli
+nest new my-nest-api
+```
 
-![macbook-pro-m1-max_3.jpg](/posts/macbook-pro_macbook-pro-m1-max-3-jpg.jpg)
-[**WATCH**: How I built a software agency website with Next.js + Tailwind CSS (in nature)](https://www.youtube.com/watch?v=GznmPACXBlY)
 
-I chose 14-inch because 16-inch is too big for me. I connect it with [Pro Display XDR](/posts/pro-display-xdr)
-at home.
+## Tópico 3: Controladores e Rotas
+### 3.1 Criando Controladores
+
+```bash
+nest generate controller app
+```
+
+
+### 3.2 Definindo Rotas
+
+```typescript
+// app.controller.ts
+import { Controller, Get } from '@nestjs/common';
+
+@Controller('app')
+export class AppController {
+  @Get()
+  getAppInfo() {
+    return 'Bem-vindo à sua API Nest.js com TypeScript!';
+  }
+}
+```
+
+
+## Tópico 7: Serviços e Lógica de Negócios
+### 7.1 Criando Serviços
+
+```typescript
+// app.service.ts
+import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class AppService {
+  getAppInfo(): string {
+    return 'Bem-vindo à sua API Nest.js com TypeScript!';
+  }
+}
+```
+
+
+### 7.2 Conexão a Bancos de Dados
+
+```typescript
+// app.service.ts
+import { Repository } from 'typeorm';
+
+@Injectable()
+export class AppService {
+  constructor(
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
+  ) {}
+
+  async findUser(id: number): Promise<User> {
+    return this.userRepository.findOne(id);
+  }
+}
+```
+
+
+## Tópico 11: Documentação da API
+### 11.1 Gerando Documentação
+
+```typescript
+// main.ts
+import { NestFactory } from '@nestjs/core';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  const options = new DocumentBuilder()
+    .setTitle('Minha API Nest.js')
+    .setDescription('API RESTful com Swagger')
+    .setVersion('1.0')
+    .addTag('api')
+    .build();
+  const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup('api', app, document);
+  await app.listen(3000);
+}
+bootstrap();
+```

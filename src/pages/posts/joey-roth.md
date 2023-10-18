@@ -1,28 +1,129 @@
 ---
-description: Speakers
+description: API REST com NestJS, Prisma, PostgreSQL e Swagger
 public: true
 layout: ../../layouts/BlogPost.astro
-title: Joey Roth
+title: Nestjs
 createdAt: 1663138617853
 updatedAt: 1663138677695
 tags:
-  - Desk
-heroImage: /posts/joey-roth_thumbnail.jpg
-slug: joey-roth
+  - Backend
+heroImage: /posts/nestjs-prisma-rest-api.png
+slug: Backend
 ---
 
 
-These speakers are by [Joey Roth](https://joeyrothaudio.com/). I found them on Instagram in a post. I had to go ahead and research which ones they were exactly. One thing for sure though is that they look really nice and unique. The quality of the wood stand and the steel ceramic housing are very nice.
+# Criando uma API REST com NestJS, Prisma, PostgreSQL e Swagger
 
-![joey-roth_2.jpeg](/posts/joey-roth_joey-roth-2-jpeg.jpg)
+Neste guia, vamos criar uma API RESTful com TypeScript usando o framework NestJS, um banco de dados PostgreSQL através do Prisma, e documentar a API com o Swagger.
+## Tópico 1: Configuração Inicial
+### 1.1 Instalação de Dependências
 
-The sound quality is decent when it comes to highs and mids. But I found the bass to be lacking, so it is not suitable for listening to rock or dance music or things like that. It is not a big problem for me because I use other speakers in the other room when I enjoy music. 
+Comece instalando as dependências necessárias em seu projeto:
 
-![joey-roth_3.jpeg](/posts/joey-roth_joey-roth-3-jpeg.jpg)
+```bash
+npm install --save @nestjs/core @nestjs/common @nestjs/microservices @nestjs/swagger @nestjs/testing
+npm install --save @nestjs/typeorm pg typeorm
+npm install --save prisma @prisma/client
+```
 
-![joey-roth_4.jpg](/posts/joey-roth_joey-roth-4-jpg.jpg)
 
-![joey-roth_5.jpg](/posts/joey-roth_joey-roth-5-jpg.jpg)
+### 1.2 Configuração do Banco de Dados
 
-![joey-roth_6.jpg](/posts/joey-roth_joey-roth-6-jpg.jpg)
+Configure o banco de dados PostgreSQL no arquivo `ormconfig.json`:
 
+```json
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "seu-usuario",
+  "password": "sua-senha",
+  "database": "sua-base-de-dados",
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "synchronize": true
+}
+```
+
+
+### 1.3 Configuração do Prisma
+
+Configure o Prisma para gerenciar seu banco de dados PostgreSQL:
+
+```bash
+npx prisma init
+```
+
+
+## Tópico 2: Criando Endpoints
+### 2.1 Criando Controladores
+
+Crie controladores para definir endpoints e lógica de roteamento.
+
+```typescript
+// user.controller.ts
+import { Controller, Get } from '@nestjs/common';
+
+@Controller('users')
+export class UserController {
+  @Get()
+  findAll(): string[] {
+    return ['user1', 'user2'];
+  }
+}
+```
+
+
+### 2.2 Definindo Rotas
+
+Configure as rotas no módulo da aplicação:
+
+```typescript
+// app.module.ts
+import { Module } from '@nestjs/common';
+import { UserController } from './user.controller';
+
+@Module({
+  controllers: [UserController],
+})
+export class AppModule {}
+```
+
+
+## Tópico 3: Documentação com Swagger
+### 3.1 Configuração do Swagger
+
+Configure o Swagger para documentar automaticamente a API:
+
+```typescript
+// main.ts
+import { NestFactory } from '@nestjs/core';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+
+  const options = new DocumentBuilder()
+    .setTitle('API Documentation')
+    .setDescription('API endpoints documentation')
+    .setVersion('1.0')
+    .addTag('users')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup('api', app, document);
+
+  await app.listen(3000);
+}
+bootstrap();
+```
+
+
+## Tópico 4: Práticas Recomendadas
+### 4.1 Práticas Recomendadas
+
+Siga as práticas recomendadas do NestJS e do Prisma para criar uma API robusta e eficiente.
+## Tópico 5: Conclusão
+### 5.1 Aprofundando-se
+
+Este guia fornece um ponto de partida para criar uma API RESTful com NestJS, Prisma, PostgreSQL e Swagger. Explore a documentação oficial dessas ferramentas e aprofunde-se em áreas específicas de interesse.
