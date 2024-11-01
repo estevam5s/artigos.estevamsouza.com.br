@@ -3,4 +3,4 @@
 
 export const SITE_TITLE = 'Artigos - Estevam Souza'
 export const SITE_DESCRIPTION = 'Uma lista com curadoria da tecnologia que eu uso'
-export const HOMEPAGE_URL = 'https://estevam-portfolio.vercel.app'
+export const HOMEPAGE_URL = 'https://estevamsouza.com.br'
